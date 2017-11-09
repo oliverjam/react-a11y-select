@@ -5,7 +5,12 @@ export const Wrapper = styled.div`
   z-index: 0;
 `;
 
-const blue = 'rgba(0, 50, 150, 0.2)';
+export const Label = styled.div`
+  font-size: 1.25em;
+  margin-bottom: 0.5em;
+`;
+
+const blue = 'rgba(0, 50, 150, 0.1)';
 
 const btnReset = css`
   font-size: inherit;
@@ -42,7 +47,9 @@ export const Button = styled.button`
   }
 `;
 
-export const List = styled.div`
+export const List = styled.ul`
+  list-style: none;
+  padding: 0;
   margin-top: 1em;
   border: 1px solid;
   border-radius: 6px;
@@ -52,11 +59,11 @@ export const List = styled.div`
   }
 `;
 
-export const Option = styled.div`
+export const Option = styled.li`
   padding: 1em;
   transition: background-color 0.1s ease-out;
   &:not(:first-child) {
-    border-top: 1px solid;
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
   }
   ${p => p.highlighted && `background-color: ${blue};`};
 `;
@@ -68,4 +75,18 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100%;
   z-index: -10;
+`;
+
+export const LiveRegion = styled.div`
+  margin-top: 2em;
+  /* border: '0';
+  clip: 'rect(0 0 0 0)';
+  height: '1px';
+  marginBottom: '-1px';
+  marginRight: '-1px';
+  overflow: 'hidden';
+  padding: '0';
+  position: 'absolute';
+  whiteSpace: 'nowrap';
+  width: '1px'; */
 `;

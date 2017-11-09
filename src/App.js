@@ -1,18 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Grid from './Grid';
 import Select from './Select';
+import LiveSelect from './LiveSelect';
 
 const Container = styled.main`
   max-width: 30em;
   margin: 0 auto;
-  padding: 1em;
 `;
 
-const options = ['test1', 'test2', 'test3'];
+const options = ['Tattooine', 'Alderaan', 'Naboo'];
 
 export default () => (
   <Container>
-    <Select options={options} />
+    <Grid>
+      {/* <Select options={options} /> */}
+      <LiveSelect options={options} label="Planet" />
+    </Grid>
   </Container>
 );
