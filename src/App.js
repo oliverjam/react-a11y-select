@@ -15,8 +15,14 @@ const options = ['Tattooine', 'Alderaan', 'Naboo'];
 export default () => (
   <Container>
     <Grid>
-      {/* <Select options={options} /> */}
-      <LiveSelect options={options} label="Planet" />
+      <article>
+        <h2 style={{ marginBottom: '1em' }}>Using aria-activedescendant</h2>
+        <Select options={options} label="destination" />
+      </article>
+      <article>
+        <h2 style={{ marginBottom: '1em' }}>Using aria-live</h2>
+        <LiveSelect options={options} label="destination" />
+      </article>
     </Grid>
   </Container>
 );

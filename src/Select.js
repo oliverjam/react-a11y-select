@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { Wrapper, Button, List, Option, Overlay } from './Select.style.js';
+import {
+  Wrapper,
+  Label,
+  Button,
+  List,
+  Option,
+  Overlay,
+} from './Select.style.js';
 
 export default class Select extends React.Component {
   constructor(props) {
@@ -8,19 +15,18 @@ export default class Select extends React.Component {
     this.state = {
       expanded: false,
       selectedIndex: 0,
-      highlightedIndex: 0,
+      highlightedIndex: -1,
     };
   }
 
   open = () => {
-    console.log('Opening...');
     this.setState({ expanded: true }, () => {
       this.list.focus();
     });
   };
 
   close = () => {
-    this.setState({ expanded: false }, () => {
+    this.setState({ expanded: false, highlightedIndex: -1 }, () => {
       this.button.focus();
     });
   };
@@ -37,7 +43,7 @@ export default class Select extends React.Component {
   moveHighlight = direction => {
     const end = this.props.options.length - 1;
     const { highlightedIndex: index } = this.state;
-    const atStart = index === 0;
+    const atStart = index <= 0;
     const atEnd = index >= end;
 
     if (direction === 'UP')
@@ -75,14 +81,17 @@ export default class Select extends React.Component {
   };
 
   render() {
-    const { options } = this.props;
+    const { options, label } = this.props;
     const { expanded, selectedIndex, highlightedIndex } = this.state;
     return (
       <Wrapper onKeyDown={this.handleKeyDown}>
         {expanded && <Overlay onClick={this.close} />}
+        <Label>Choose your {label}</Label>
         <Button
           role="button"
+          aria-label={`${label} select menu`}
           aria-expanded={expanded}
+          aria-haspopup="true"
           onClick={e => {
             e.preventDefault();
             this.open();
