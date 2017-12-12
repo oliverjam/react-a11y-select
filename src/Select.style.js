@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
+  height: 50px;
   position: relative;
   z-index: 0;
 `;
@@ -10,7 +11,7 @@ export const Label = styled.div`
   margin-bottom: 0.5em;
 `;
 
-const blue = 'rgba(0, 50, 150, 0.1)';
+const blue = 'rgba(0, 50, 150, 0.2)';
 
 const btnReset = css`
   font-size: inherit;
@@ -20,8 +21,8 @@ const btnReset = css`
 `;
 
 const focus = css`
-  outline: 4px dotted ${blue};
-  outline-offset: 4px;
+  outline: 4px dashed ${blue};
+  outline-offset: 6px;
 `;
 
 export const Button = styled.button`
@@ -66,6 +67,9 @@ export const Option = styled.li`
     border-top: 1px solid rgba(0, 0, 0, 0.25);
   }
   ${p => p.highlighted && `background-color: ${blue};`};
+  &:focus {
+    outline: 0;
+  }
 `;
 
 export const Overlay = styled.div`

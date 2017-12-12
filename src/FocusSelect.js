@@ -21,7 +21,7 @@ export default class Select extends React.Component {
 
   open = () => {
     this.setState({ expanded: true }, () => {
-      this.list.focus();
+      this.moveHighlight('DOWN');
     });
   };
 
@@ -36,7 +36,10 @@ export default class Select extends React.Component {
   };
 
   updateHighlighted = optionKey => {
-    this.setState({ highlightedIndex: optionKey });
+    this.setState({ highlightedIndex: optionKey }, () => {
+      this[`option-${optionKey}-ref`].focus();
+      console.log('focusing: ', this[`option-${optionKey}-ref`]);
+    });
   };
 
   moveHighlight = direction => {
@@ -107,7 +110,6 @@ export default class Select extends React.Component {
           <List
             role="listbox"
             tabIndex="-1"
-            aria-activedescendant={`option-${highlightedIndex}`}
             innerRef={ref => {
               this.list = ref;
             }}
@@ -116,6 +118,10 @@ export default class Select extends React.Component {
               <Option
                 key={i}
                 id={`option-${i}`}
+                tabIndex="-1"
+                innerRef={ref => {
+                  this[`option-${i}-ref`] = ref;
+                }}
                 value={option}
                 highlighted={highlightedIndex === i}
                 aria-selected={selectedIndex === i}
